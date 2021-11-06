@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from .models import Note
 from . import db
 import json
+import re
 
 views = Blueprint('views', __name__)
 
@@ -11,15 +12,22 @@ views = Blueprint('views', __name__)
 @login_required
 def home():
     if request.method == 'POST':
-        note = request.form.get('note')
+        note = request.form.get('data')
+        repeat = False;
 
-        if len(note) < 1:
-            flash('Note is too short!', category='error')
+        for note2 in current_user.notes:
+            if note==note2.data:
+                repeat=True
+
+        if repeat:
+            flash('Course already added', category='error')
+        elif len(note)>8 or len(note)<6:
+            flash('Not a valid subject', category='error')
         else:
-            new_note = Note(data=note, user_id=current_user.id)
+            new_note = Note(data=note, user_id=current_user.id,)
             db.session.add(new_note)
             db.session.commit()
-            flash('Note added!', category='success')
+            flash('Course added!', category='success')
 
     return render_template("home.html", user=current_user)
 

@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %}
-<h1 align="center">Notes</h1>
+<h1 align="center">Enter your Courses for Spring 2022</h1>
 <ul class="list-group list-group-flush" id="notes">
   {% for note in user.notes %}
   <li class="list-group-item">
@@ -11,10 +11,19 @@
   {% endfor %}
 </ul>
 <form method="POST">
-  <textarea name="note" id="note" class="form-control"></textarea>
+  <div class="form-group">
+    <label for="data">Subject</label>
+    <input
+      type="data"
+      class="form-control"
+      id="data"
+      name="data"
+      placeholder="Enter subject no space (ex:MATH2300)"
+    />
+  </div>
   <br />
   <div align="center">
-    <button type="submit" class="btn btn-primary">Add Note</button>
+    <button type="submit" class="btn btn-primary">Add Course</button>
   </div>
 </form>
 {% endblock %}
