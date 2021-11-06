@@ -20,7 +20,7 @@ def home():
                 repeat=True
 
         if repeat:
-            flash('Course already added', category='error')
+            flash('Course already added ', category='error')
         elif len(note)>8 or len(note)<6:
             flash('Not a valid subject', category='error')
         else:
