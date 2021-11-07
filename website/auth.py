@@ -47,11 +47,11 @@ def sign_up():
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email already exists.', category='error')
-        elif re.fullmatch(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b',email):
+        elif not re.fullmatch(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', email):
             flash('Invalid email.', category='error')
-        elif re.fullmatch(r'[A-Za-z]{2,25}', first_name):
+        elif not re.fullmatch(r'[A-Za-z]{2,25}', first_name):
             flash('Invalid name.', category='error')
-        elif re.fullmatch(r'[A-Za-z0-9@#$]{6,12}', password1):
+        elif not re.fullmatch(r'[A-Za-z0-9@#$]{6,12}', password1):
             flash('Invalid password.', category='error')
         elif password1 != password2:
             flash('Passwords do not match.', category='error')

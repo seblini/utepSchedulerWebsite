@@ -209,26 +209,41 @@ def getFinal():
     return bestChoice
 
 def toTable(bestChoice):
-    M = ['.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.']
-    T = ['.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.']
-    W = ['.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.']
-    R = ['.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.']
-    F = ['.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.']
+    M = ['.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.']
+    T = ['.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.']
+    W = ['.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.']
+    R = ['.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.']
+    F = ['.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.']
 
     for course1 in bestChoice:
         if('M' in course1.Days):
-            M[int(course1.Start/100)-6] = f'{course1.CRN} {course1.courseID}'
+            if course1.Start == -1:
+                M[16] = f'{course1.CRN} {course1.courseID}'
+            else:
+                M[int(course1.Start/100)-7] = f'{course1.CRN} {course1.courseID}'
         if('T' in course1.Days):
-            T[int(course1.Start/100)-6] = f'{course1.CRN} {course1.courseID}'
+            if course1.Start == -1:
+                T[16] = f'{course1.CRN} {course1.courseID}'
+            else:
+                T[int(course1.Start / 100) - 7] = f'{course1.CRN} {course1.courseID}'
         if('W' in course1.Days):
-            W[int(course1.Start/100)-6] = f'{course1.CRN} {course1.courseID}'
+            if course1.Start == -1:
+                W[16] = f'{course1.CRN} {course1.courseID}'
+            else:
+                W[int(course1.Start / 100) - 7] = f'{course1.CRN} {course1.courseID}'
         if('R' in course1.Days):
-            R[int(course1.Start/100)-6] = f'{course1.CRN} {course1.courseID}'
+            if course1.Start == -1:
+                R[16] = f'{course1.CRN} {course1.courseID}'
+            else:
+                R[int(course1.Start / 100) - 7] = f'{course1.CRN} {course1.courseID}'
         if('F' in course1.Days):
-            F[int(course1.Start/100)-6] = f'{course1.CRN} {course1.courseID}'
+            if course1.Start == -1:
+                F[16] = f'{course1.CRN} {course1.courseID}'
+            else:
+                F[int(course1.Start / 100) - 7] = f'{course1.CRN} {course1.courseID}'
 
 
-    stopplaying = pd.DataFrame({'Time' : [6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23], 'M' : M, 'T' : T, 'W' : W, 'R' : R, 'F' : F})
+    stopplaying = pd.DataFrame({'Time' : [7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,'TBA'], 'M' : M, 'T' : T, 'W' : W, 'R' : R, 'F' : F})
     if not path.exists("/Users/sebi/PycharmProjects/utepSchedulerWebsite/website/schedule.png") and not path.exists("/Users/sebi/PycharmProjects/utepSchedulerWebsite/website/static/schedule.png"):
         dfi.export(stopplaying, 'schedule.png')
         shutil.move("/Users/sebi/PycharmProjects/utepSchedulerWebsite/schedule.png", "/Users/sebi/PycharmProjects/utepSchedulerWebsite/website/static")
