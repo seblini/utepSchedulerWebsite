@@ -1,4 +1,5 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %}
+<br/>
 <h1 align="center">Enter your Courses for Spring 2022</h1>
 <ul class="list-group list-group-flush" id="notes">
   {% for note in user.notes %}
@@ -12,18 +13,23 @@
 </ul>
 <form method="POST">
   <div class="form-group">
-    <label for="data">Subject</label>
+    <label for="data">Course (ex: MATH 2300)</label>
     <input
       type="data"
       class="form-control"
       id="data"
       name="data"
-      placeholder="Enter subject no space (ex:MATH2300)"
+      placeholder="Enter course"
     />
   </div>
-  <br />
   <div align="center">
     <button type="submit" class="btn btn-primary">Add Course</button>
+  </div>
+</form>
+<br/>
+<form action="/schedule" method="post">
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Generate Schedule</button>
   </div>
 </form>
 {% endblock %}

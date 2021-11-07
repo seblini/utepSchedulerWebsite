@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block title %}Schedule{% endblock %} {% block content %}
+<br/>
+<h1 align="center">Your schedule for Spring 2022</h1>
+<br/>
+<div class="banner-image">
+    <image
+      src="{{ url_for('static', filename='schedule.png') }}"
+    ></image>
+</div>
+{% endblock %}
