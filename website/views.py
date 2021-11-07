@@ -4,6 +4,7 @@ from .models import Note
 from . import db
 import json
 import re
+import shutil
 from .questionable_code import getFinal, toTable
 
 views = Blueprint('views', __name__)
